@@ -1,0 +1,5 @@
+// https://www.codewars.com/kata/57e1e61ba396b3727c000251
+
+'use strict';
+
+const stringClean = s => s.replace(/\d/g, '');

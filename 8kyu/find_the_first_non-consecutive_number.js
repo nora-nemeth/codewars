@@ -3,5 +3,11 @@
 'use strict';
 
 function firstNonConsecutive(numbers) {
-
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i - 1] + 1 !== numbers[i]) {
+      return numbers[i];
+    }
+  }
+  
+  return null;
 }

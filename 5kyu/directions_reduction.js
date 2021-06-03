@@ -5,37 +5,17 @@
 //  Test.assertSimilar(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]), ["WEST"])
 
 
-function dirReduc(directions){
-  if(directions.length < 3) {
-    return directions;
-  }
-  
-  if(directions.length > 1) {
-    for(let i = 0; i < directions.length; i++) {
-      if(directions[i].toLowerCase() === 'north' && directions[i + 1].toLowerCase() === 'south') {
-        directions.splice(0, 2);
-        i = 0;
-      }
-
-      else if(directions[i].toLowerCase() === 'south' && directions[i + 1].toLowerCase() === 'north') {
-        directions.splice(0, 2);
-        i = 0;
-
-      }
-
-      else if(directions[i].toLowerCase() === 'east' && directions[i + 1].toLowerCase() === 'west') {
-        directions.splice(0, 2);
-        i = 0;
-
-      }
-
-      else if(directions[i].toLowerCase() === 'west' && directions[i + 1].toLowerCase() === 'east') {
-        directions.splice(0, 2);
-        i = 0;
-      }
+function dirReduc(dir){
+  for (let i = 1; i < dir.length; ++i) {
+    const unnecessary = (dir[i - 1] === 'NORTH' && dir[i] === 'SOUTH')
+      || (dir[i - 1] === 'SOUTH' && dir[i] === 'NORTH')
+      || (dir[i - 1] === 'WEST' && dir[i] === 'EAST')
+      || (dir[i - 1] === 'EAST' && dir[i] === 'WEST');
+    
+    if (unnecessary) {
+      dir.splice(i - 1, 2);
+      i = 0;
     }
   }
-
-  return directions;
+  return dir;
 }
-console.log(dirReduc(['north', 'west', 'west']));
